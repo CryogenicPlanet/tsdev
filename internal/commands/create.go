@@ -137,7 +137,7 @@ func generatePackageJson(name string) {
 		Module:          "dist/index.es.js",
 		Files:           []string{"dist"},
 		Scripts:         map[string]string{"start": "tsdev start", "build": "tsdev build", "dev": "tsdev dev", "lint": "tsdev lint"},
-		DevDependencies: map[string]string{"typescript": "latest", "husky": "latest", "prettier": "latest", "prettier-config-standard": "latest"},
+		DevDependencies: map[string]string{"typescript": "latest", "husky": "latest", "prettier": "latest", "prettier-config-standard": "latest", "@cryogenicplanet/tsdev": "latest"},
 		Husky:           map[string]map[string]string{"hooks": {"pre-commit": "tsdev prettier", "pre-push": "tsdev lint"}},
 		Engines:         map[string]string{"node": ">12"},
 		Prettier:        "prettier-config-standard",
@@ -179,7 +179,7 @@ func generatePackageJson(name string) {
 	}
 
 	if projectConfig.TailwindCss {
-		packageJson.DevDependencies = utils.MergeStringMaps(packageJson.Dependencies, setupTailwindPackages(projectConfig.Template == types.ViteLibraryModeTemplate))
+		packageJson.DevDependencies = utils.MergeStringMaps(packageJson.DevDependencies, setupTailwindPackages(projectConfig.Template == types.ViteLibraryModeTemplate))
 	}
 
 	packageJson.TSDEV = projectConfig
@@ -211,6 +211,10 @@ func downloadTemplate(dirName string) {
 	switch projectConfig.Template {
 	case types.BasicTemplate:
 		utils.DownloadArchive("https://tsdev.vercel.app/templates/basic.zip", dirName)
+	case types.ReactTemplate:
+		utils.DownloadArchive("https://tsdev.vercel.app/templates/vite.zip", dirName)
+	case types.NextTemplate:
+		utils.DownloadArchive("https://tsdev.vercel.app/templates/next.zip", dirName)
 	default:
 	}
 	setupWg.Done()
@@ -275,6 +279,9 @@ func HandleCreateCommand(name string) error {
 
 	go installPackages(dirPath(name))
 
+	setupWg.Wait()
+
+	// Tailwind would overwrite the dummy files
 	if projectConfig.TailwindCss {
 		setupWg.Add(1)
 		go setupTailwind(dirPath(name), projectConfig.Template == types.ViteLibraryModeTemplate)

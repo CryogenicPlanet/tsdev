@@ -3,6 +3,7 @@ package commands
 import (
 	"errors"
 	"fmt"
+	"internal/types"
 	"internal/utils"
 	"os"
 	"sync"
@@ -12,10 +13,8 @@ import (
 
 var buildWg sync.WaitGroup
 
-const BUNDLE_DTS_PATH = "node_modules/tsdev/node_modules/dts-bundle/lib/dts-bundle.js"
-
 func emitDts(cwd string, name string) {
-	if _, err := os.Stat(BUNDLE_DTS_PATH); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(types.BUNDLE_DTS_PATH); errors.Is(err, os.ErrNotExist) {
 
 		fmt.Println("[WARN] You can only use --dts flag if you have installed tsdev as a dependency")
 		buildWg.Done()
@@ -26,7 +25,7 @@ func emitDts(cwd string, name string) {
 }
 
 func bundleDts(cwd string, name string) {
-	utils.ExecWithOutput(cwd, "node", BUNDLE_DTS_PATH, "--name", name, "--main", "dist/src/index.d.ts", "--out", "../index.d.ts")
+	utils.ExecWithOutput(cwd, "node", types.BUNDLE_DTS_PATH, "--name", name, "--main", "dist/src/index.d.ts", "--out", "../index.d.ts")
 	buildWg.Done()
 }
 
