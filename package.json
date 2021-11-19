@@ -1,0 +1,43 @@
+{
+  "name": "tsdev",
+  "version": "0.1.0",
+  "description": "A better tsdx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Tarak",
+  "license": "MIT",
+  "files": [
+    "dist/postinstall.js",
+    "static/config"
+  ],
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "dts-bundle": "^0.7.3",
+    "eslint": "^8.2.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier-standard": "^4.0.1",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.4.1",
+    "prettier-config-standard": "^4.0.0",
+    "pretty-quick": "^3.1.1",
+    "typescript": "^4.5.2"
+  },
+  "peerDependencies": {
+    "prettier": "^2.4.1",
+    "prettier-config-standard": "^4.0.0"
+  }
+}
