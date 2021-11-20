@@ -1,6 +1,6 @@
 {
   "name": "@cryogenicplanet/tsdev",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A better tsdx",
   "scripts": {
     "postinstall": "node dist/postinstall.js install",

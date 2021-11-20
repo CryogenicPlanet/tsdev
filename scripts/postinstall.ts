@@ -195,7 +195,7 @@ async function install(callback: ErrCallback) {
   const platform = PLATFORM_MAPPING[process.platform];
   const arch = ARCH_MAPPING[process.arch];
 
-  const url = `https://github-release-proxy.vercel.app/api/proxy/releases?owner=${OWNER}&repo=${REPO}&os${platform}&arch=${arch}`;
+  const url = `https://github-release-proxy.vercel.app/api/proxy/releases?owner=${OWNER}&repo=${REPO}&os=${platform}&arch=${arch}`;
 
   console.log("Downloading binary from", url);
 
