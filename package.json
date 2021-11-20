@@ -1,11 +1,11 @@
 {
   "name": "@cryogenicplanet/tsdev",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A better tsdx",
   "scripts": {
     "postinstall": "node dist/postinstall.js install",
     "preuninstall": "node dist/postinstall.js uninstall",
-    "build": "esbuild scripts/postinstall.ts --outdir=dist/ --platform=node --format=cjs",
+    "build": "esbuild --bundle scripts/postinstall.ts --outdir=dist/ --platform=node --format=cjs",
     "prepare": "pnpm build"
   },
   "author": "Rahul Tarak",
