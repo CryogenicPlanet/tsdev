@@ -1,12 +1,13 @@
 {
   "name": "@cryogenicplanet/tsdev",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A better tsdx",
   "scripts": {
     "postinstall": "node dist/postinstall.js install",
     "preuninstall": "node dist/postinstall.js uninstall",
+    "get-config": "curl https://tsdev.vercel.app/config/.eslintrc --output dist/.eslintrc",
     "build": "esbuild --bundle scripts/postinstall.ts --outdir=dist/ --platform=node --format=cjs",
-    "prepare": "pnpm build"
+    "prepare": "pnpm build && pnpm get-config"
   },
   "author": "Rahul Tarak",
   "license": "MIT",
