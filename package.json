@@ -12,7 +12,7 @@
   "author": "Rahul Tarak",
   "license": "MIT",
   "files": [
-    "dist/postinstall.js"
+    "dist/"
   ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
