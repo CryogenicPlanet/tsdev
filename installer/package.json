@@ -1,0 +1,36 @@
+{
+  "name": "tsdev-installer",
+  "version": "0.0.1",
+  "description": "The installer for tsdev, a better tsdx",
+  "scripts": {
+    "postinstall": "node dist/postinstall.js install",
+    "preuninstall": "node dist/postinstall.js uninstall",
+    "build": "esbuild --bundle scripts/postinstall.ts --outdir=dist/ --platform=node --format=cjs",
+    "prepare": "pnpm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryogenicplanet/tsdev.git"
+  },
+  "keywords": [
+    "tsdx",
+    "typescript",
+    "boilerplate",
+    "code-gen",
+    "esbuild"
+  ],
+  "author": "Rahul Tarak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cryogenicplanet/tsdev/issues"
+  },
+  "homepage": "https://github.com/cryogenicplanet/tsdev#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "decompress": "^4.2.1",
+    "mkdirp": "^1.0.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.2"
+  }
+}
