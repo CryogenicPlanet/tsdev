@@ -234,6 +234,15 @@ func setupTailwind(dirName string, libraryMode bool) {
 	setupWg.Done()
 }
 
+func gitInit(path string) error {
+
+	utils.ExecWithOutput(path, "git", "init")
+	utils.ExecWithOutput(path, "git", "add", ".")
+	utils.ExecWithOutput(path, "git", "commit", "-m", "Tsdev setup")
+
+	return nil
+}
+
 // Will install the packages
 func installPackages(path string) {
 
@@ -288,6 +297,8 @@ func HandleCreateCommand(name string) error {
 	}
 
 	setupWg.Wait()
+
+	gitInit(dirPath(name))
 
 	return nil
 }
