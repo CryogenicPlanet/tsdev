@@ -13,20 +13,33 @@ import (
 
 var buildWg sync.WaitGroup
 
-func emitDts(cwd string, name string) {
+func emitDts(cwd string, name string) error {
 	if _, err := os.Stat(types.BUNDLE_DTS_PATH); errors.Is(err, os.ErrNotExist) {
 
 		fmt.Println("[WARN] You can only use --dts flag if you have installed tsdev as a dependency")
 		buildWg.Done()
-		return
+		return nil
 	}
 	utils.ExecWithOutput(cwd, "tsc", "--outDir", "dist/src/")
-	bundleDts(cwd, name)
+	return bundleDts(cwd, name)
 }
 
-func bundleDts(cwd string, name string) {
+func bundleDts(cwd string, name string) error {
+
+	if _, err := os.Stat(types.BUNDLE_DTS_PATH); errors.Is(err, os.ErrNotExist) {
+
+		if _, err := os.Stat(types.BUNDLE_BACKUP_DTS_PATH); errors.Is(err, os.ErrNotExist) {
+			fmt.Println("[WARN] You can only use --dts flag if you have installed tsdev as a dependency")
+			return errors.New("cannot find bundle-dts path")
+		}
+		utils.ExecWithOutput(cwd, "node", types.BUNDLE_BACKUP_DTS_PATH, "--name", name, "--main", "dist/src/index.d.ts", "--out", "../index.d.ts")
+		buildWg.Done()
+		return nil
+	}
+
 	utils.ExecWithOutput(cwd, "node", types.BUNDLE_DTS_PATH, "--name", name, "--main", "dist/src/index.d.ts", "--out", "../index.d.ts")
 	buildWg.Done()
+	return nil
 }
 
 func buildCJS(entryPoint string, cwd string) {

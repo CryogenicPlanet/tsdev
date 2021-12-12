@@ -18,7 +18,18 @@ func HandleLintCommand(fix bool) error {
 
 	if _, err := os.Stat(types.ESLINT_PATH); errors.Is(err, os.ErrNotExist) {
 
-		return fmt.Errorf("cannot use lint without installing tsdev as a dependency")
+		if _, err := os.Stat(types.ESLINT_BACKUP_PATH); errors.Is(err, os.ErrNotExist) {
+
+			return fmt.Errorf("cannot use lint without installing tsdev as a dependency")
+
+		}
+
+		if fix {
+			utils.ExecWithOutput(cwd, "node", types.ESLINT_BACKUP_PATH, "--config", types.ESLINT_CONFIG_PATH, "src/*", "--fix")
+		} else {
+			utils.ExecWithOutput(cwd, "node", types.ESLINT_BACKUP_PATH, "--config", types.ESLINT_CONFIG_PATH, "src/*")
+		}
+		return nil
 	}
 
 	if fix {
