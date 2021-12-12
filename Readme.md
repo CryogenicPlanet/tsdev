@@ -1,4 +1,7 @@
-# Zero Config Modern Typescript Projects
+# Tsdev (Zero Config Modern Typescript Projects)
+
+
+## Motivation
 
 I really like the idea behind https://github.com/jaredpalmer/tsdx but I find it uses older tools and it ends up taking time for me to setup my typescript packages anyways. So I wanted to make something like it that fit my stack and preferred tools better, something that obfuscates all the configuration needed to run modern typescript applications and allows use to get started instantly.
 
@@ -28,12 +31,12 @@ tsdev create {name}
 
 
 ```
-➜ tsdev --help          
+➜ tsdev --help
 NAME:
    tsdev - Zero config modern typescript tooling
 
 USAGE:
-   tsdev [global options] command [command options] [arguments...]
+   tsdev [global options] command [command options] Run a .ts file with zero config directly
 
 COMMANDS:
    create    Create a new application
@@ -44,7 +47,7 @@ COMMANDS:
    help, h   Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --help, -h  show help (default: false)
+   --watch     Run in watch mode (default: false)
 ```
 
 ## Templates
@@ -63,8 +66,8 @@ Some of these might happen sooner than others. If you want something to be prior
 - [] Add `graphql` template using [tsgql](https://github.com/modfy/tsgql). This will be `graphql` without having to write any `graphql` code at all, just typescript.
 - [] Add `prisma` batteries
 - [] Add support for all nextjs examples from https://github.com/vercel/next.js/tree/canary/examples
-- [] `tsdev filename` Automatically run any `.ts` or `.tsx` file with zero config
-    - The `.ts` part of this is easy, it is basically what `tsdev dev filename` is
+- [x] `tsdev filename` Automatically run any `.ts` or `.tsx` file with zero config
+    - [x] The `.ts` part of this is easy, it is basically what `tsdev dev filename` is
     - The `.tsx` part is a bit more complicated, and will require making a custom version of `vite` that just runs file without a config file or a `.html` file or having to use `react-dom` yourself
 - [] Make `vite` default template use filesystem routing 
 - [] Clone [`bun run` feature](https://twitter.com/jarredsumner/status/1454218996983623685?s=20) to allow really fast `npm run commands` 

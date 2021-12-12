@@ -69,10 +69,11 @@ func SetupCliApp() (cli.App, error) {
 	}
 
 	app := &cli.App{
-		Name:                 "tsdx++",
+		Name:                 "tsdev",
 		Commands:             cliCommands,
 		Usage:                "Zero config modern typescript tooling",
 		EnableBashCompletion: true,
+		ArgsUsage:            "Run a .ts file with zero config directly",
 		Action: func(c *cli.Context) error {
 
 			return commands.HandleDefault(c.Bool("watch"), c.Args().Slice())
