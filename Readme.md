@@ -6,7 +6,7 @@ I really like the idea behind https://github.com/jaredpalmer/tsdx but I find it 
 ## Get started
 
 ```bash
-npm install -g @cryogenicplanet/tsdev
+npm install -g tsdev-installer
 
 tsdev create {name}
 ```
@@ -30,7 +30,7 @@ tsdev create {name}
 ```
 ➜ tsdev --help          
 NAME:
-   tsdx++ - Zero config modern typescript tooling
+   tsdev - Zero config modern typescript tooling
 
 USAGE:
    tsdev [global options] command [command options] [arguments...]
@@ -68,4 +68,4 @@ Some of these might happen sooner than others. If you want something to be prior
     - The `.tsx` part is a bit more complicated, and will require making a custom version of `vite` that just runs file without a config file or a `.html` file or having to use `react-dom` yourself
 - [] Make `vite` default template use filesystem routing 
 - [] Clone [`bun run` feature](https://twitter.com/jarredsumner/status/1454218996983623685?s=20) to allow really fast `npm run commands` 
-- [] Add support for [bun](https://bun.sh) once it becomes more stable
+- [] Add support for [bun](https://bun.sh) once it becomes more stable 

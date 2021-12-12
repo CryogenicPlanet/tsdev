@@ -27,8 +27,7 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
-  release-npm:
+  release-npm-installer:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,18 +43,18 @@ jobs:
           cache-name: cache-pnpm-modules
         with:
           path: ~/.pnpm-store
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+          key: installer-${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
+            installer-${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.node-version }}-
       - name: Install pnpm
         run: curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6
-      - run: pnpm install --ignore-scripts
-      - run:  pnpm publish  --no-git-checks
+      - run: cd installer && pnpm install --ignore-scripts
+      - run: cd installer && pnpm publish  --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   test-installer:
       if: ${{ always() }} # Will run even if one of the releases fails, This is really for testing purposes cause release-go can't release twice
-      needs: [release-npm, release-go]
+      needs: [release-npm-installer, release-go]
       runs-on: ${{ matrix.os }}
       strategy:
           matrix:
@@ -65,5 +64,5 @@ jobs:
           uses: actions/setup-node@v1
           with:
             node-version: 14
-        - run: npm install -g @cryogenicplanet/tsdev
+        - run: npm install -g tsdev-installer
         - run: tsdev --help
