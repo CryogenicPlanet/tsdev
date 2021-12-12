@@ -8,7 +8,7 @@ import (
 
 func SetupCliApp() (cli.App, error) {
 
-	commands := []*cli.Command{
+	cliCommands := []*cli.Command{
 		{Name: "create",
 			Usage: "Create a new application",
 			Action: func(c *cli.Context) error {
@@ -70,9 +70,19 @@ func SetupCliApp() (cli.App, error) {
 
 	app := &cli.App{
 		Name:                 "tsdx++",
-		Commands:             commands,
+		Commands:             cliCommands,
 		Usage:                "Zero config modern typescript tooling",
 		EnableBashCompletion: true,
+		Action: func(c *cli.Context) error {
+
+			return commands.HandleDefault(c.Bool("watch"), c.Args().Slice())
+		},
+		Flags: []cli.Flag{
+			&cli.BoolFlag{
+				Name:  "watch",
+				Usage: "Run in watch mode",
+			},
+		},
 	}
 
 	return *app, nil
