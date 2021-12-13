@@ -1,6 +1,6 @@
 {
   "name": "tsdev-installer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "The installer for tsdev, a better tsdx",
   "scripts": {
     "postinstall": "node dist/postinstall.js install",
@@ -32,5 +32,9 @@
   },
   "devDependencies": {
     "esbuild": "^0.14.2"
+  },
+  "goBinary": {
+    "name": "tsdev",
+    "path": "./bin"
   }
 }
