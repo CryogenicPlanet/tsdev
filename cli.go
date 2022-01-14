@@ -31,19 +31,17 @@ func SetupCliApp() (cli.App, error) {
 					Name:  "dts",
 					Usage: "Will emit .d.ts files and bundle them",
 				},
-				// &cli.BoolFlag{
-				// 	Name:  "sourcemap",
-				// 	Usage: "Will emit source maps",
-				// },
-				// &cli.StringFlag{
-				// 	Name:  "dist",
-				// 	Usage: "Set output directory",
-				// 	Value: "dist",
-				// },
 			},
 			Action: func(c *cli.Context) error {
 
 				return commands.HandleBuildCommand(c.Args().First(), c.Bool("dts"))
+			},
+		},
+		{
+			Name:  "dts",
+			Usage: "Emit .d.ts files for package",
+			Action: func(c *cli.Context) error {
+				return commands.RunDts()
 			},
 		},
 		{

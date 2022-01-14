@@ -127,6 +127,27 @@ func cloneTemplate(name string) error {
 // Will generate package json
 func generatePackageJson(name string) {
 
+	var prepareScript string
+
+	switch projectConfig.PackageManager {
+	case types.Pnpm:
+		{
+			prepareScript = "pnpm build && pnpm dts"
+		}
+	case types.Yarn:
+		{
+			prepareScript = "yarn build && yarn dts"
+		}
+	case types.Npm:
+		{
+			prepareScript = "npm run build && npm run dts"
+		}
+	default:
+		{
+			prepareScript = "npm run build && npm run dts"
+		}
+	}
+
 	// Default package json
 	packageJson := types.PackageJSON{
 		Name:            name,
@@ -136,7 +157,7 @@ func generatePackageJson(name string) {
 		Typings:         "dist/index.d.ts",
 		Module:          "dist/index.es.js",
 		Files:           []string{"dist"},
-		Scripts:         map[string]string{"start": "tsdev start", "build": "tsdev build", "dev": "tsdev dev", "lint": "tsdev lint"},
+		Scripts:         map[string]string{"start": "tsdev start", "build": "tsdev build", "dev": "tsdev dev", "lint": "tsdev lint", "dts": "tsdev dts", "prepare": prepareScript},
 		DevDependencies: map[string]string{"typescript": "latest", "husky": "latest", "prettier": "latest", "prettier-config-standard": "latest", "@cryogenicplanet/tsdev": "latest"},
 		Husky:           map[string]map[string]string{"hooks": {"pre-commit": "tsdev prettier", "pre-push": "tsdev lint"}},
 		Engines:         map[string]string{"node": ">12"},
