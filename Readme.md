@@ -56,19 +56,4 @@ Templates are not stored here, this just allows us to keep this repo clean, all 
 
 ## TODOs
 
-Some of these might happen sooner than others. If you want something to be prioritized make an issue
-
-- [] Monorepo support, automatically bootstrap monorepos
-- [] Support for `publishConfig` beyond just `pnpm`. This is super useful for typescript packages in monorepos
-- [] Add basic CI setup for github actions (with all three package managers)
-- [] Add defaults for publishing normal non-react packages
-- [] Allow overwriting or extending eslint configs
-- [] Add `graphql` template using [tsgql](https://github.com/modfy/tsgql). This will be `graphql` without having to write any `graphql` code at all, just typescript.
-- [] Add `prisma` batteries
-- [] Add support for all nextjs examples from https://github.com/vercel/next.js/tree/canary/examples
-- [x] `tsdev filename` Automatically run any `.ts` or `.tsx` file with zero config
-    - [x] The `.ts` part of this is easy, it is basically what `tsdev dev filename` is
-    - The `.tsx` part is a bit more complicated, and will require making a custom version of `vite` that just runs file without a config file or a `.html` file or having to use `react-dom` yourself
-- [] Make `vite` default template use filesystem routing 
-- [] Clone [`bun run` feature](https://twitter.com/jarredsumner/status/1454218996983623685?s=20) to allow really fast `npm run commands` 
-- [] Add support for [bun](https://bun.sh) once it becomes more stable 
+Can find all TODOs on https://github.com/CryogenicPlanet/tsdev/issues/5
