@@ -27,7 +27,7 @@ func EmitDts(cwd string, name string) error {
 		}
 	}
 	fmt.Println("Package manager is ", packageJson.TSDEV.PackageManager)
-	err = utils.ExecWithOutput(cwd, utils.GetPackageManager(packageJson.TSDEV.PackageManager), "tsc", "--outDir", "dist/src/")
+	err = utils.ExecWithOutput(cwd, utils.GetPackageManager(packageJson.TSDEV.PackageManager, true), "tsc", "--outDir", "dist/src/")
 	if err != nil {
 		buildWg.Done()
 		return err

@@ -2,7 +2,7 @@ package utils
 
 import "internal/types"
 
-func GetPackageManager(packageManger types.PackageManagerType) string {
+func GetPackageManager(packageManger types.PackageManagerType, run bool) string {
 
 	switch packageManger {
 	case types.Pnpm:
@@ -15,10 +15,18 @@ func GetPackageManager(packageManger types.PackageManagerType) string {
 		}
 	case types.Npm:
 		{
+			// npm run cannot run node modules, the way yarn or pnpm can
+			if run {
+				return "yarn"
+			}
 			return "npm"
 		}
 	default:
 		{
+			// npm run cannot run node modules, the way yarn or pnpm can
+			if run {
+				return "yarn"
+			}
 			return "npm"
 		}
 	}

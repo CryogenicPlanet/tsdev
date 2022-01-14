@@ -1,6 +1,6 @@
 {
   "name": "tsdev-installer",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "The installer for tsdev, a better tsdx",
   "scripts": {
     "postinstall": "node dist/postinstall.js install",
