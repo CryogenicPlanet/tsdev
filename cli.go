@@ -1,9 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"internal/commands"
 
 	"github.com/urfave/cli/v2"
+)
+
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+	builtBy = "unknown"
 )
 
 func SetupCliApp() (cli.App, error) {
@@ -47,8 +55,14 @@ func SetupCliApp() (cli.App, error) {
 		{
 			Name:  "prettier",
 			Usage: "Will run pretty-quick",
+			Flags: []cli.Flag{
+				&cli.BoolFlag{
+					Name:  "all",
+					Usage: "Will prettify all files instead of staged files",
+				},
+			},
 			Action: func(c *cli.Context) error {
-				return commands.HandlePrettierCommand()
+				return commands.HandlePrettierCommand(c.Bool("all"))
 			},
 		},
 		{
@@ -64,6 +78,15 @@ func SetupCliApp() (cli.App, error) {
 				return commands.HandleLintCommand(c.Bool("fix"))
 			},
 		},
+		{
+			Name:    "version",
+			Usage:   "Version of cli",
+			Aliases: []string{"v"},
+			Action: func(c *cli.Context) error {
+				fmt.Printf("tsdev %s, commit %s, built at %s by %s", version, commit, date, builtBy)
+				return nil
+			},
+		},
 	}
 
 	app := &cli.App{
@@ -74,12 +97,21 @@ func SetupCliApp() (cli.App, error) {
 		ArgsUsage:            "Run a .ts file with zero config directly",
 		Action: func(c *cli.Context) error {
 
-			return commands.HandleDefault(c.Bool("watch"), c.Args().Slice())
+			if c.Bool("version") {
+				fmt.Printf("tsdev %s, commit %s, built at %s by %s", version, commit, date, builtBy)
+				return nil
+			} else {
+				return commands.HandleDefault(c.Bool("watch"), c.Args().Slice())
+			}
 		},
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
 				Name:  "watch",
 				Usage: "Run in watch mode",
+			},
+			&cli.BoolFlag{
+				Name:    "version",
+				Aliases: []string{"v"},
 			},
 		},
 	}

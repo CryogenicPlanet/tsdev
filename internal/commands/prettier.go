@@ -8,7 +8,16 @@ import (
 	"os"
 )
 
-func HandlePrettierCommand() error {
+func handlePrettyAll() error {
+
+	return nil
+}
+
+func HandlePrettierCommand(allFlag bool) error {
+
+	if allFlag {
+		return handlePrettyAll()
+	}
 
 	if _, err := os.Stat(types.PRETTY_QUICK_PATH); errors.Is(err, os.ErrNotExist) {
 

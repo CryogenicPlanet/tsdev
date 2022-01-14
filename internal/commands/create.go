@@ -116,14 +116,6 @@ func createDir(name string) error {
 	return nil
 }
 
-// Will clone skeleton template
-func cloneTemplate(name string) error {
-
-	// Download templates from releases and unzip them
-
-	return nil
-}
-
 // Will generate package json
 func generatePackageJson(name string) {
 
