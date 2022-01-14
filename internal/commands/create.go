@@ -148,7 +148,7 @@ func generatePackageJson(name string) {
 		Main:            "dist/index.js",
 		Typings:         "dist/index.d.ts",
 		Module:          "dist/index.es.js",
-		Files:           []string{"dist"},
+		Files:           []string{"dist", "!dist/src"},
 		Scripts:         map[string]string{"start": "tsdev start", "build": "tsdev build", "dev": "tsdev dev", "lint": "tsdev lint", "dts": "tsdev dts", "prepare": prepareScript},
 		DevDependencies: map[string]string{"typescript": "latest", "husky": "latest", "prettier": "latest", "prettier-config-standard": "latest", "@cryogenicplanet/tsdev": "latest"},
 		Husky:           map[string]map[string]string{"hooks": {"pre-commit": "tsdev prettier", "pre-push": "tsdev lint"}},
