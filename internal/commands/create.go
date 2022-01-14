@@ -215,6 +215,8 @@ func downloadTemplate(dirName string) {
 		utils.DownloadArchive("https://tsdev.vercel.app/templates/vite.zip", dirName)
 	case types.NextTemplate:
 		utils.DownloadArchive("https://tsdev.vercel.app/templates/next.zip", dirName)
+	case types.ViteLibraryModeTemplate:
+		utils.DownloadArchive("https://tsdev.vercel.app/templates/viteLib.zip", dirName)
 	default:
 	}
 	setupWg.Done()
@@ -298,7 +300,7 @@ func HandleCreateCommand(name string) error {
 
 	setupWg.Wait()
 
-	gitInit(dirPath(name))
+	// gitInit(dirPath(name))
 
 	return nil
 }
