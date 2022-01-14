@@ -211,6 +211,8 @@ func downloadTemplate(dirName string) {
 	switch projectConfig.Template {
 	case types.BasicTemplate:
 		utils.DownloadArchive("https://tsdev.vercel.app/templates/basic.zip", dirName)
+	case types.ExpressTemplate:
+		utils.DownloadArchive("https://tsdev.vercel.app/templates/express.zip", dirName)
 	case types.ReactTemplate:
 		utils.DownloadArchive("https://tsdev.vercel.app/templates/vite.zip", dirName)
 	case types.NextTemplate:
