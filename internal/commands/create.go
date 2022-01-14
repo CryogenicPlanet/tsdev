@@ -240,7 +240,7 @@ func gitInit(path string) error {
 
 	utils.ExecWithOutput(path, "git", "init")
 	utils.ExecWithOutput(path, "git", "add", ".")
-	utils.ExecWithOutput(path, "git", "commit", "-m", "Tsdev setup")
+	utils.ExecWithOutput(path, "git", "commit", "-m", "🚀 Tsdev setup")
 
 	return nil
 }
@@ -300,7 +300,7 @@ func HandleCreateCommand(name string) error {
 
 	setupWg.Wait()
 
-	// gitInit(dirPath(name))
+	gitInit(dirPath(name))
 
 	return nil
 }
