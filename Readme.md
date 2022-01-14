@@ -31,7 +31,7 @@ tsdev create {name}
 
 
 ```
-➜ tsdev --help
+tsdev --help
 NAME:
    tsdev - Zero config modern typescript tooling
 
@@ -39,15 +39,19 @@ USAGE:
    tsdev [global options] command [command options] Run a .ts file with zero config directly
 
 COMMANDS:
-   create    Create a new application
-   dev       This run the app in dev mode with file watching
-   build     This builds the app for production.
-   prettier  Will run pretty-quick
-   lint      Will lint the application
-   help, h   Shows a list of commands or help for one command
+   create      Create a new application
+   dev         This run the app in dev mode with file watching
+   build       This builds the app for production.
+   dts         Emit .d.ts files and bundle them
+   prettier    Will run pretty-quick, prettify all staged files
+   lint        Will lint the application
+   version, v  Version of cli
+   help, h     Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --watch     Run in watch mode (default: false)
+   --watch        Run in watch mode (default: false)
+   --version, -v  (default: false)
+   --help, -h     show help (default: false)
 ```
 
 ## Templates

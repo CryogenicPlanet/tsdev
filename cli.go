@@ -47,14 +47,14 @@ func SetupCliApp() (cli.App, error) {
 		},
 		{
 			Name:  "dts",
-			Usage: "Emit .d.ts files for package",
+			Usage: "Emit .d.ts files and bundle them",
 			Action: func(c *cli.Context) error {
 				return commands.RunDts()
 			},
 		},
 		{
 			Name:  "prettier",
-			Usage: "Will run pretty-quick",
+			Usage: "Will run pretty-quick, prettify all staged files",
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
 					Name:  "all",
