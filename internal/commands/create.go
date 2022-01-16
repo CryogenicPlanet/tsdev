@@ -173,7 +173,7 @@ func generatePackageJson(name string) {
 
 		if projectConfig.Template == types.ViteLibraryModeTemplate {
 			// Vite library mode exports https://vitejs.dev/guide/build.html#library-mode
-			packageJson.Exports = map[string]map[string]string{".": {"imports": "./dist/index.es.js", "exports": "./dist/index.umd.js"}}
+			packageJson.Exports = map[string]map[string]string{".": {"imports": "./dist/index.es.js", "require": "./dist/index.umd.js"}}
 		}
 
 	case types.NextTemplate:
